@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="basic.calculator.FXMLDocumentController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Number 1" />
+      <TextField fx:id="number1Field" layoutX="92.0" layoutY="9.0" />
+      <TextField fx:id="number2Field" layoutX="92.0" layoutY="40.0" />
+      <Label layoutX="14.0" layoutY="45.0" text="Number 2" />
+      <Label layoutX="14.0" layoutY="77.0" text="Result" />
+      <TextField fx:id="resultField" layoutX="92.0" layoutY="72.0" />
+      <Button layoutX="92.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleAddAction" text="Add" />
+   </children>
+</AnchorPane>
