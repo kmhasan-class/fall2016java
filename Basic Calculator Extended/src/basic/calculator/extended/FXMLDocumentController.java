@@ -20,8 +20,9 @@ import javafx.scene.control.TextField;
 public class FXMLDocumentController implements Initializable {
 
     String operation;
-    int operand1;
-    int operand2;
+    double operand1;
+    double operand2;
+    boolean operationPending = true;
 
     @FXML
     private TextField displayField;
@@ -33,6 +34,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleOneAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         String oldText = displayField.getText();
         String newText = oldText + "1";
         displayField.setText(newText);
@@ -40,6 +45,10 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleTwoAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         String oldText = displayField.getText();
         String newText = oldText + "2";
         displayField.setText(newText);
@@ -47,62 +56,128 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handleThreeAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         displayField.setText(displayField.getText() + "3");
     }
 
     @FXML
     private void handleSixeAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         displayField.setText(displayField.getText() + "6");
     }
 
     @FXML
     private void handleFiveAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         displayField.setText(displayField.getText() + "5");
     }
 
     @FXML
     private void handleFourAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         displayField.setText(displayField.getText() + "4");
     }
 
     @FXML
     private void handleNineAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         displayField.setText(displayField.getText() + "9");
     }
 
     @FXML
     private void handleEightAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         displayField.setText(displayField.getText() + "8");
     }
 
     @FXML
     private void handleSevenAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
         displayField.setText(displayField.getText() + "7");
     }
 
     @FXML
     private void handleZeroAction(ActionEvent event) {
-        displayField.setText(displayField.getText() + "0");
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
+        if (!displayField.getText().equals("0"))
+            displayField.setText(displayField.getText() + "0");
     }
 
     @FXML
     private void handleDotAction(ActionEvent event) {
+        if (!operationPending) {
+            displayField.setText("");
+            operationPending = true;
+        }
+        if (!displayField.getText().contains("."))
+            displayField.setText(displayField.getText() + ".");
     }
 
     @FXML
     private void handleEqualAction(ActionEvent event) {
+        operand2 = Double.parseDouble(displayField.getText());
+        double result = 0;
+
         if (operation.equals("ADD")) {
-            operand2 = Integer.parseInt(displayField.getText());
-            int result = operand1 + operand2;
-            displayField.setText("" + result);
+            result = operand1 + operand2;
+        } else if (operation.equals("SUB")) {
+            result = operand1 - operand2;
+        } else if (operation.equals("DIV")) {
+            result = operand1 / operand2;
         }
+
+        String output = String.format("%.2f", result);
+        displayField.setText(output);
+        operationPending = false;
     }
 
     @FXML
     private void handleAddAction(ActionEvent event) {
-        operand1 = Integer.parseInt(displayField.getText());
+        operand1 = Double.parseDouble(displayField.getText());
         displayField.setText("");
         operation = "ADD";
+    }
+
+    @FXML
+    private void handleSubtractAction(ActionEvent event) {
+        operand1 = Double.parseDouble(displayField.getText());
+        displayField.setText("");
+        operation = "SUB";
+    }
+
+    @FXML
+    private void handleDivisionAction(ActionEvent event) {
+        operand1 = Double.parseDouble(displayField.getText());
+        displayField.setText("");
+        operation = "DIV";
+    }
+
+    @FXML
+    private void handleMultiplicationAction(ActionEvent event) {
     }
 
 }
