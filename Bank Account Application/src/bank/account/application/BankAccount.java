@@ -40,6 +40,10 @@ public class BankAccount {
         return balance;
     }
     
+    public String getAccountName() {
+        return accountName;
+    }
+    
     public void setAddress(String nAddress) {
         address = nAddress;
     }

@@ -56,12 +56,25 @@ public class BankAccountApplication {
         
         // declaration
         BankAccount bankAccountObject;
+        SavingsAccount rajAccount;
         // instantiation
-        bankAccountObject = new BankAccount("1234", "Md. Ashiqur Rahman", "Gulshan", 1000);
+        bankAccountObject = new BankAccount("1234", "Md. Ashiqur Rahman", "Gulshan", 100000);
+        rajAccount = new SavingsAccount("1235", "Roksana Akter Jolly", "Gulshan", 100000);
+        
         bankAccountObject.setAddress("Mirpur");
-        bankAccountObject.withdraw(-100);
-        bankAccountObject.deposit(200);
-        System.out.printf("Balance: %.2f\n", bankAccountObject.getBalance());
+//        bankAccountObject.withdraw(-100);
+//        bankAccountObject.deposit(200);
+        
+        bankAccountObject.withdraw(500);
+        bankAccountObject.withdraw(500);
+        bankAccountObject.withdraw(500);
+        
+        rajAccount.deposit(1000);
+        rajAccount.withdraw(500);
+        rajAccount.withdraw(500);
+        rajAccount.withdraw(500);
+        System.out.printf("Name: %s Balance: %.2f\n", bankAccountObject.getAccountName(), bankAccountObject.getBalance());
+        System.out.printf("Name: %s Balance: %.2f\n", rajAccount.getAccountName(), rajAccount.getBalance());
     }
     
 }
