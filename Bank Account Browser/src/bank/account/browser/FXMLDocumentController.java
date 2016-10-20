@@ -38,6 +38,13 @@ public class FXMLDocumentController implements Initializable {
     private BankAccount bankAccountArray[];
     private int numberOfAccounts;
 
+    public void display(int index) {
+        accountNumberField.setText(bankAccountArray[index].getAccountNumber());
+        accountNameField.setText(bankAccountArray[index].getAccountName());
+        addressArea.setText(bankAccountArray[index].getAddress());
+        balanceField.setText("" + bankAccountArray[index].getBalance());
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         bankAccountArray = new BankAccount[100];
@@ -57,6 +64,7 @@ public class FXMLDocumentController implements Initializable {
                 bankAccountArray[numberOfAccounts] = bankAccount;
                 numberOfAccounts++;
             }
+            display(1);
         } catch (FileNotFoundException e) {
             System.err.println("accounts.txt doesn't exist!");
             System.exit(0);
