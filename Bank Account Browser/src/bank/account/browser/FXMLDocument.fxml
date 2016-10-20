@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="222.0" prefWidth="313.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="bank.account.browser.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="222.0" prefWidth="313.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bank.account.browser.FXMLDocumentController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -42,6 +42,7 @@
               </items>
             </ToolBar>
             <TextField fx:id="searchField" onAction="#handleSearchAction" promptText="Search by account number" />
+            <Label fx:id="statusLabel" maxWidth="1.7976931348623157E308" prefHeight="15.0" prefWidth="80.0" />
          </children>
       </VBox>
    </children>

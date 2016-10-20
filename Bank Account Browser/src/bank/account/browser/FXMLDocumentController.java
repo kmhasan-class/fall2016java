@@ -37,7 +37,10 @@ public class FXMLDocumentController implements Initializable {
     private TextField searchField;
     private BankAccount bankAccountArray[];
     private int numberOfAccounts;
-
+    private int currentIndex;
+    @FXML
+    private Label statusLabel;
+    
     public void display(int index) {
         accountNumberField.setText(bankAccountArray[index].getAccountNumber());
         accountNameField.setText(bankAccountArray[index].getAccountName());
@@ -64,7 +67,8 @@ public class FXMLDocumentController implements Initializable {
                 bankAccountArray[numberOfAccounts] = bankAccount;
                 numberOfAccounts++;
             }
-            display(1);
+            currentIndex = 0;
+            display(currentIndex);
         } catch (FileNotFoundException e) {
             System.err.println("accounts.txt doesn't exist!");
             System.exit(0);
@@ -122,14 +126,38 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void handlePreviousAction(ActionEvent event) {
+        if (currentIndex > 0) {
+            currentIndex--;
+            statusLabel.setText("Current index: " + currentIndex);
+        } else {
+            statusLabel.setText("We're at the beginning");
+        }
+        display(currentIndex);
     }
 
     @FXML
     private void handleNextAction(ActionEvent event) {
+        if (currentIndex < numberOfAccounts - 1) {
+            currentIndex++;
+            statusLabel.setText("Current index: " + currentIndex);
+        } else {
+            statusLabel.setText("We're at the end");
+        }
+        display(currentIndex);
     }
 
     @FXML
     private void handleSearchAction(ActionEvent event) {
+        String accountKey = searchField.getText();
+        for (int i = 0; i < numberOfAccounts; i++)
+            if (bankAccountArray[i].getAccountNumber().equals(accountKey)) {
+                currentIndex = i;
+                break;
+            }
+        if (!bankAccountArray[currentIndex].getAccountNumber().equals(accountKey))
+            statusLabel.setText("No account found with number " + accountKey);
+        else statusLabel.setText("");
+        display(currentIndex);
     }
 
     @FXML
