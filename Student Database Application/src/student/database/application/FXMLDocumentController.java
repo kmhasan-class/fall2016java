@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -60,6 +61,8 @@ public class FXMLDocumentController implements Initializable {
     private TableColumn<Student, String> idColumn;
     @FXML
     private TableColumn<Student, String> nameColumn;
+    @FXML
+    private TableColumn<Student, Number> cgpaColumn;
 
     private void displayCurrentStudent() {
         idField.setText(studentsList.get(currentIndex).getStudentId());
@@ -84,8 +87,8 @@ public class FXMLDocumentController implements Initializable {
                 return new SimpleStringProperty(param.getValue().getStudentId());
             }
         });
-        nameColumn.setCellValueFactory(param -> 
-            new SimpleStringProperty(((Student) param.getValue()).getStudentName()));
+        nameColumn.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getStudentName()));
+        cgpaColumn.setCellValueFactory(param -> new SimpleDoubleProperty(param.getValue().getCgpa()));
         
         final String HOSTNAME = "172.17.0.134";
         final String DBNAME = "studentinfodb";

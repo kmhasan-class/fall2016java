@@ -49,6 +49,7 @@
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="129.0" text="Student ID" />
                 <TableColumn fx:id="nameColumn" prefWidth="172.0" text="Student Name" />
+                  <TableColumn fx:id="cgpaColumn" prefWidth="120.0" text="CGPA" />
               </columns>
             </TableView>
          </children>
