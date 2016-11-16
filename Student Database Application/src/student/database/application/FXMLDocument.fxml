@@ -6,11 +6,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="218.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="student.database.application.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="217.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="student.database.application.FXMLDocumentController">
    <children>
-      <HBox layoutX="10.0" layoutY="18.0">
+      <HBox layoutX="10.0" layoutY="18.0" prefHeight="218.0" prefWidth="490.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane layoutY="18.0" prefHeight="190.0" prefWidth="238.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="18.0">
+            <GridPane layoutY="18.0" prefHeight="200.0" prefWidth="285.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="149.0" AnchorPane.topAnchor="18.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="55.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="145.0" minWidth="10.0" prefWidth="145.0" />
@@ -34,12 +34,13 @@
                       <Button mnemonicParsing="false" onAction="#handlePreviousAction" text="Previous" />
                         <Button mnemonicParsing="false" onAction="#handleNextAction" text="Next" />
                         <Button mnemonicParsing="false" onAction="#handleSaveAction" text="Save" />
+                        <Button mnemonicParsing="false" onAction="#handleUpdateAction" text="Update" />
                     </items>
                   </ToolBar>
                   <ComboBox fx:id="studentComboBox" onAction="#loadStudentAction" prefWidth="150.0" GridPane.columnSpan="2" />
                </children>
             </GridPane>
-            <ListView fx:id="studentsListView" onMouseClicked="#handleListViewMouseClickAction" prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="studentsListView" onMouseClicked="#handleListViewMouseClickAction" prefHeight="200.0" prefWidth="185.0" />
          </children>
       </HBox>
    </children>

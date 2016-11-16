@@ -139,4 +139,30 @@ public class FXMLDocumentController implements Initializable {
         displayCurrentStudent();
     }
 
+    @FXML
+    private void handleUpdateAction(ActionEvent event) {
+        String id = idField.getText();
+        String name = nameField.getText();
+        double cgpa = Double.parseDouble(cgpaField.getText());
+
+        final String HOSTNAME = "172.17.0.134";
+        final String DBNAME = "studentinfodb";
+        final String USERNAME = "cse2015fall2016";
+        final String PASSWORD = "java";
+        final String DBURL = "jdbc:mysql://" + HOSTNAME + "/" + DBNAME;
+
+        try {
+            Connection connection = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            System.out.println("Connected");
+            Statement statement = connection.createStatement();
+            String query = "update studentInfo set studentName = '" + name + "', cgpa = " + cgpa + " where studentId = " + id + ";";
+            statement.executeUpdate(query);
+            
+            Student student = new Student(id, name, cgpa);
+            studentsList.set(currentIndex, student);
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }
