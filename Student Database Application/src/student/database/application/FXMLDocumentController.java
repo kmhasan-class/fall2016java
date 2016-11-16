@@ -23,9 +23,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -44,6 +46,8 @@ public class FXMLDocumentController implements Initializable {
     private int currentIndex;
     @FXML
     private ListView<Student> studentsListView;
+    @FXML
+    private ComboBox<Student> studentComboBox;
 
     private void displayCurrentStudent() {
         idField.setText(studentsList.get(currentIndex).getStudentId());
@@ -57,6 +61,7 @@ public class FXMLDocumentController implements Initializable {
         currentIndex = 0;
 
         studentsListView.setItems(studentsList);
+        studentComboBox.setItems(studentsList);
         
         final String HOSTNAME = "172.17.0.134";
         final String DBNAME = "studentinfodb";
@@ -119,6 +124,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void handleNextAction(ActionEvent event) {
         currentIndex++;
+        displayCurrentStudent();
+    }
+
+    @FXML
+    private void loadStudentAction(ActionEvent event) {
+        currentIndex = studentComboBox.getSelectionModel().getSelectedIndex();
+        displayCurrentStudent();
+    }
+
+    @FXML
+    private void handleListViewMouseClickAction(MouseEvent event) {
+        currentIndex = studentsListView.getSelectionModel().getSelectedIndex();
         displayCurrentStudent();
     }
 
