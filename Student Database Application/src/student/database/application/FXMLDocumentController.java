@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,8 +28,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 /**
  *
@@ -48,6 +54,12 @@ public class FXMLDocumentController implements Initializable {
     private ListView<Student> studentsListView;
     @FXML
     private ComboBox<Student> studentComboBox;
+    @FXML
+    private TableView<Student> studentsTableView;
+    @FXML
+    private TableColumn<Student, String> idColumn;
+    @FXML
+    private TableColumn<Student, String> nameColumn;
 
     private void displayCurrentStudent() {
         idField.setText(studentsList.get(currentIndex).getStudentId());
@@ -62,6 +74,18 @@ public class FXMLDocumentController implements Initializable {
 
         studentsListView.setItems(studentsList);
         studentComboBox.setItems(studentsList);
+        studentsTableView.setItems(studentsList);
+        
+        idColumn.setCellValueFactory(
+                new Callback<CellDataFeatures<Student, String>,
+                        ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(CellDataFeatures<Student, String> param) {
+                return new SimpleStringProperty(param.getValue().getStudentId());
+            }
+        });
+        nameColumn.setCellValueFactory(param -> 
+            new SimpleStringProperty(((Student) param.getValue()).getStudentName()));
         
         final String HOSTNAME = "172.17.0.134";
         final String DBNAME = "studentinfodb";
@@ -110,6 +134,8 @@ public class FXMLDocumentController implements Initializable {
             Statement statement = connection.createStatement();
             String query = "insert into studentInfo values('" + id + "', '" + name + "', " + cgpa + ");";
             statement.executeUpdate(query);
+            Student student = new Student(id, name, cgpa);
+            studentsList.add(student);
         } catch (SQLException ex) {
             Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
         }
