@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="paint.program.FXMLDocumentController">
+   <children>
+      <HBox layoutX="10.0" layoutY="10.0">
+         <children>
+            <Canvas fx:id="drawingCanvas" height="400.0" layoutX="14.0" layoutY="14.0" onMouseDragged="#handleMouseClickAction" onMouseReleased="#handleMouseReleaseAction" width="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <ColorPicker fx:id="colorPicker" onAction="#handleColorPickerAction" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
