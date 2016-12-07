@@ -22,4 +22,7 @@ public abstract class Shape {
     
     public abstract double getArea();
     
+    public String getName() {
+        return name;
+    }
 }
