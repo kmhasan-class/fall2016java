@@ -20,14 +20,17 @@ import java.util.logging.Logger;
 public class ChatClient {
 
     public ChatClient() {
-        
+
         try {
             Socket serverSocket = new Socket("172.17.0.134", 9999);
             MultithreadedChatClientWriter writerThread = new MultithreadedChatClientWriter(serverSocket);
             MultithreadedChatClientReader readerThread = new MultithreadedChatClientReader(serverSocket);
-            
+
             writerThread.start();
-            readerThread.start();
+            new Thread(readerThread).start();
+
+            // Homework: implement one of these threads with lambda
+            //new Thread(() -> {}).start();
         } catch (IOException ex) {
             Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
         }

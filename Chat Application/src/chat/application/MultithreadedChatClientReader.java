@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  * @author kmhasan
  */
-public class MultithreadedChatClientReader extends Thread {
+public class MultithreadedChatClientReader implements Runnable {
     private Socket serverSocket;
     
     public MultithreadedChatClientReader(Socket serverSocket) {
@@ -26,14 +26,16 @@ public class MultithreadedChatClientReader extends Thread {
     @Override
     public void run() {
         try {
-            byte[] messageBytes = new byte[1000];
+            byte[] messageBytes = null;
             
             InputStream inputStream = serverSocket.getInputStream();
             while (true) {
+                messageBytes = new byte[1000];
                 inputStream.read(messageBytes);
                 String messageString = new String(messageBytes).trim();
                 if (messageString.equals("QUIT"))
                     break;
+                System.out.println(messageString);
             }
         } catch (IOException ex) {
             Logger.getLogger(MultithreadedChatClientReader.class.getName()).log(Level.SEVERE, null, ex);

@@ -20,22 +20,25 @@ import java.util.logging.Logger;
 public class MultithreadedChatClientWriter extends Thread {
 
     private Socket serverSocket;
-
+    private String username;
+    
     public MultithreadedChatClientWriter(Socket serverSocket) {
         super();
         this.serverSocket = serverSocket;
-        
+        this.username = "KMH";
     }
 
     @Override
     public void run() {
         OutputStream outputStream = null;
+        
         try {
             String message = null;
             BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
             outputStream = serverSocket.getOutputStream();
             while (true) {
                 message = input.readLine();
+                message = username + ": " + message;
                 outputStream.write(message.getBytes());
                 if (message.equals("QUIT")) {
                     break;
