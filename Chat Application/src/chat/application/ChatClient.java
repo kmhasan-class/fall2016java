@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 public class ChatClient {
 
     public ChatClient() {
+        
         try {
             Socket serverSocket = new Socket("172.17.0.134", 9999);
             MultithreadedChatClientWriter writerThread = new MultithreadedChatClientWriter(serverSocket);

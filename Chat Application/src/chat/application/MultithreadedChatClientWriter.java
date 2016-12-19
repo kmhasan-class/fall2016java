@@ -24,6 +24,7 @@ public class MultithreadedChatClientWriter extends Thread {
     public MultithreadedChatClientWriter(Socket serverSocket) {
         super();
         this.serverSocket = serverSocket;
+        
     }
 
     @Override

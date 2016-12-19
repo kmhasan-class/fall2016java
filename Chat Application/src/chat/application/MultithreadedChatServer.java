@@ -26,6 +26,7 @@ public class MultithreadedChatServer extends Thread {
     public MultithreadedChatServer(ChatServer mainServer, Socket clientSocket) {
         this.mainServer = mainServer;
         this.clientSocket = clientSocket;
+        
     }
 
     @Override
